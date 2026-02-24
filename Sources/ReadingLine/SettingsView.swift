@@ -70,7 +70,7 @@ struct SettingsView: View {
             shortcutSection
         }
         .padding(24)
-        .frame(width: 380)
+        .frame(width: 420)
     }
 
     // MARK: - Preview
