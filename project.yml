@@ -19,8 +19,12 @@ targets:
     sources:
       - path: Sources/ReadingLine
         type: group
-    resources:
-      - Resources
+      - path: Resources/Assets.xcassets
+        type: file
+        buildPhase: resources
+      - path: Resources/AppIcon.icns
+        type: file
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.yuki.readingline
