@@ -1,0 +1,43 @@
+name: ReadingLine
+
+options:
+  deploymentTarget:
+    macOS: "12.0"
+  defaultConfig: Debug
+  xcodeVersion: "16"
+  bundleIdPrefix: com.yuki
+
+settings:
+  base:
+    SWIFT_VERSION: "5"
+    MACOSX_DEPLOYMENT_TARGET: "12.0"
+
+targets:
+  ReadingLine:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources/ReadingLine
+        type: group
+    resources:
+      - Resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.yuki.readingline
+        PRODUCT_NAME: ReadingLine
+        INFOPLIST_FILE: Resources/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Resources/ReadingLine.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_STYLE: Automatic
+        ENABLE_HARDENED_RUNTIME: YES
+    preBuildScripts: []
+
+schemes:
+  ReadingLine:
+    build:
+      targets:
+        ReadingLine: all
+    run:
+      config: Debug
+    archive:
+      config: Release

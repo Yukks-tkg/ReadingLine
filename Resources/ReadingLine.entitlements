@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- App Store 必須: App Sandbox を有効化 -->
+    <key>com.apple.security.app-sandbox</key>
+    <true/>
+
+    <!--
+        CGEventTap (.listenOnly) は Sandbox 内でも動作する。
+        ユーザーが Accessibility 権限を付与すれば OK。
+        権限の案内は AXIsProcessTrustedWithOptions ではなく
+        AppDelegate のカスタムアラート + NSWorkspace.open で行う。
+    -->
+</dict>
+</plist>
