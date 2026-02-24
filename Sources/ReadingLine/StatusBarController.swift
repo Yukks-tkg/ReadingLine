@@ -7,17 +7,17 @@ final class StatusBarController {
     private var settingsWindowController: SettingsWindowController?
     private var cancellables = Set<AnyCancellable>()
     private let settings = AppSettings.shared
-    private weak var enableSwitch: NSSwitch?
+    private weak var toggleView: MenuToggleView?
 
     init() {
         configureStatusItem()
         buildMenu()
 
-        // Update switch state when toggled via keyboard shortcut
+        // Sync toggle view when shortcut changes the state
         settings.$isEnabled
             .receive(on: RunLoop.main)
             .sink { [weak self] enabled in
-                self?.enableSwitch?.state = enabled ? .on : .off
+                self?.toggleView?.isOn = enabled
             }
             .store(in: &cancellables)
     }
@@ -71,27 +71,23 @@ final class StatusBarController {
         label.sizeToFit()
         label.frame.origin = NSPoint(x: 14, y: (height - label.frame.height) / 2)
 
-        let toggle = NSSwitch()
-        toggle.state = settings.isEnabled ? .on : .off
-        toggle.target = self
-        toggle.action = #selector(switchToggled(_:))
-        let size = toggle.intrinsicContentSize
+        let toggle = MenuToggleView(isOn: settings.isEnabled)
+        let tw = toggle.intrinsicContentSize
         toggle.frame = NSRect(
-            x: width - size.width - 10,
-            y: (height - size.height) / 2,
-            width: size.width,
-            height: size.height
+            x: width - tw.width - 12,
+            y: (height - tw.height) / 2,
+            width: tw.width,
+            height: tw.height
         )
+        toggle.onToggle = { [weak self] isOn in
+            self?.settings.isEnabled = isOn
+        }
 
         container.addSubview(label)
         container.addSubview(toggle)
-        enableSwitch = toggle
+        toggleView = toggle
 
         return container
-    }
-
-    @objc private func switchToggled(_ sender: NSSwitch) {
-        settings.isEnabled = sender.state == .on
     }
 
     @objc private func openSettings() {
@@ -100,5 +96,43 @@ final class StatusBarController {
         }
         settingsWindowController?.showWindow(nil)
         NSApp.activate(ignoringOtherApps: true)
+    }
+}
+
+// MARK: - Custom toggle drawn in NSView (NSSwitch doesn't render correctly in menu items)
+
+final class MenuToggleView: NSView {
+
+    var isOn: Bool { didSet { needsDisplay = true } }
+    var onToggle: ((Bool) -> Void)?
+
+    private let w: CGFloat = 36
+    private let h: CGFloat = 20
+
+    init(isOn: Bool) {
+        self.isOn = isOn
+        super.init(frame: NSRect(x: 0, y: 0, width: 36, height: 20))
+    }
+    required init?(coder: NSCoder) { fatalError() }
+
+    override var intrinsicContentSize: NSSize { NSSize(width: w, height: h) }
+
+    override func draw(_ dirtyRect: NSRect) {
+        let radius = h / 2
+        let track = NSBezierPath(roundedRect: NSRect(x: 0, y: 0, width: w, height: h),
+                                 xRadius: radius, yRadius: radius)
+        (isOn ? NSColor.controlAccentColor : NSColor(white: 0.55, alpha: 1)).setFill()
+        track.fill()
+
+        let pad: CGFloat = 2
+        let thumbD = h - pad * 2
+        let thumbX = isOn ? w - thumbD - pad : pad
+        NSColor.white.setFill()
+        NSBezierPath(ovalIn: NSRect(x: thumbX, y: pad, width: thumbD, height: thumbD)).fill()
+    }
+
+    override func mouseDown(with event: NSEvent) {
+        isOn.toggle()
+        onToggle?(isOn)
     }
 }
