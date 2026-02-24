@@ -22,7 +22,5 @@
 	<string>12.0</string>
 	<key>LSUIElement</key>
 	<true/>
-	<key>NSAccessibilityUsageDescription</key>
-	<string>Reading Line はマウスカーソルの位置を追跡して読書補助ラインを表示するためにアクセシビリティ権限を使用します。</string>
 </dict>
 </plist>
