@@ -17,14 +17,12 @@
 		C7A6C449CB17BCAD112CA900 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FAD18E01DF3FD368C9EF2E /* AppSettings.swift */; };
 		D397267D0B2723FC77CC16E9 /* OverlayWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2374079351703AECBDC9E /* OverlayWindowController.swift */; };
 		EFCCDDF3BDB5F366D62AC631 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A420AF88BB78BEF30CEA96 /* SettingsView.swift */; };
-		F533734808F4BFCAB175F7D0 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0C79C0CCAFA0DAA08C3E1696 /* AppIcon.icns */; };
 		FA4F958BA38013D92ECDE7DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB583645C45A36F5CC32FE01 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0C79C0CCAFA0DAA08C3E1696 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
 		15FADB0CEB8936DD36200D75 /* MouseTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseTracker.swift; sourceTree = "<group>"; };
-		2EEC568A4DDF1C140C10E154 /* ReadingLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadingLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EEC568A4DDF1C140C10E154 /* Doksen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doksen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40D11CDB9C7A108A974FD5BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49372FEA7ABD5008D94FCA67 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		4B143F3BCB4C26592CB720CB /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
@@ -59,7 +57,7 @@
 		916E04E3BB72F7A55E8D34FB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2EEC568A4DDF1C140C10E154 /* ReadingLine.app */,
+				2EEC568A4DDF1C140C10E154 /* Doksen.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,7 +74,6 @@
 		C977D5A2ABAB2E1FFF48721C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0C79C0CCAFA0DAA08C3E1696 /* AppIcon.icns */,
 				40D11CDB9C7A108A974FD5BB /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -100,7 +97,7 @@
 			packageProductDependencies = (
 			);
 			productName = ReadingLine;
-			productReference = 2EEC568A4DDF1C140C10E154 /* ReadingLine.app */;
+			productReference = 2EEC568A4DDF1C140C10E154 /* Doksen.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -110,7 +107,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2600;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					01B0812D9F8A894C7034A84E = {
 						ProvisioningStyle = Automatic;
@@ -140,7 +137,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F533734808F4BFCAB175F7D0 /* AppIcon.icns in Resources */,
 				5ECB919469A8BC740353C67A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,23 +168,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Resources/ReadingLine.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
-				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 2HNQAJKUD5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Doksen;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuki.readingline;
-				PRODUCT_NAME = ReadingLine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuki.doksen;
+				PRODUCT_NAME = Doksen;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -227,12 +218,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 2HNQAJKUD5;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -246,7 +234,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5;
@@ -257,23 +244,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Resources/ReadingLine.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
-				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 2HNQAJKUD5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Doksen;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuki.readingline;
-				PRODUCT_NAME = ReadingLine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuki.doksen;
+				PRODUCT_NAME = Doksen;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -312,12 +294,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 2HNQAJKUD5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -338,7 +317,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5;
