@@ -81,6 +81,7 @@ final class StatusBarController {
         )
         toggle.onToggle = { [weak self] isOn in
             self?.settings.isEnabled = isOn
+            self?.statusItem.menu?.cancelTracking()
         }
 
         container.addSubview(label)
@@ -99,36 +100,61 @@ final class StatusBarController {
     }
 }
 
-// MARK: - Custom toggle drawn in NSView (NSSwitch doesn't render correctly in menu items)
+// MARK: - Custom toggle using CALayer for smooth animation
 
 final class MenuToggleView: NSView {
 
-    var isOn: Bool { didSet { needsDisplay = true } }
+    var isOn: Bool { didSet { guard oldValue != isOn else { return }; updateAppearance(animated: true) } }
     var onToggle: ((Bool) -> Void)?
 
     private let w: CGFloat = 36
     private let h: CGFloat = 20
+    private let pad: CGFloat = 2
+    private let trackLayer = CALayer()
+    private let thumbLayer = CALayer()
 
     init(isOn: Bool) {
         self.isOn = isOn
         super.init(frame: NSRect(x: 0, y: 0, width: 36, height: 20))
+        wantsLayer = true
+        setupLayers()
+        updateAppearance(animated: false)
     }
     required init?(coder: NSCoder) { fatalError() }
 
     override var intrinsicContentSize: NSSize { NSSize(width: w, height: h) }
 
-    override func draw(_ dirtyRect: NSRect) {
-        let radius = h / 2
-        let track = NSBezierPath(roundedRect: NSRect(x: 0, y: 0, width: w, height: h),
-                                 xRadius: radius, yRadius: radius)
-        (isOn ? NSColor.controlAccentColor : NSColor(white: 0.55, alpha: 1)).setFill()
-        track.fill()
+    private func setupLayers() {
+        trackLayer.frame = CGRect(x: 0, y: 0, width: w, height: h)
+        trackLayer.cornerRadius = h / 2
+        layer?.addSublayer(trackLayer)
 
-        let pad: CGFloat = 2
+        let thumbD = h - pad * 2
+        thumbLayer.frame = CGRect(x: pad, y: pad, width: thumbD, height: thumbD)
+        thumbLayer.cornerRadius = thumbD / 2
+        thumbLayer.backgroundColor = NSColor.white.cgColor
+        thumbLayer.shadowColor = NSColor.black.cgColor
+        thumbLayer.shadowOpacity = 0.15
+        thumbLayer.shadowOffset = CGSize(width: 0, height: -1)
+        thumbLayer.shadowRadius = 1
+        layer?.addSublayer(thumbLayer)
+    }
+
+    private func updateAppearance(animated: Bool) {
         let thumbD = h - pad * 2
         let thumbX = isOn ? w - thumbD - pad : pad
-        NSColor.white.setFill()
-        NSBezierPath(ovalIn: NSRect(x: thumbX, y: pad, width: thumbD, height: thumbD)).fill()
+        let trackColor = (isOn ? NSColor.controlAccentColor : NSColor(white: 0.55, alpha: 1)).cgColor
+
+        CATransaction.begin()
+        if animated {
+            CATransaction.setAnimationDuration(0.22)
+            CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: .easeInEaseOut))
+        } else {
+            CATransaction.setDisableActions(true)
+        }
+        thumbLayer.frame = CGRect(x: thumbX, y: pad, width: thumbD, height: thumbD)
+        trackLayer.backgroundColor = trackColor
+        CATransaction.commit()
     }
 
     override func mouseDown(with event: NSEvent) {

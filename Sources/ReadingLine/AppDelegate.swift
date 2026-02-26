@@ -27,7 +27,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .receive(on: RunLoop.main)
             .sink { [weak overlay, weak tracker] enabled in
                 overlay?.setVisible(enabled)
-                if enabled { tracker?.start() } else { tracker?.stop() }
+                if enabled {
+                    tracker?.start()
+                    overlay?.updateMousePosition(NSEvent.mouseLocation)
+                } else {
+                    tracker?.stop()
+                }
             }
             .store(in: &cancellables)
 
