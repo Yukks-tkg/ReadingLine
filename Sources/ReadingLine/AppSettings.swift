@@ -1,5 +1,6 @@
 import AppKit
 import Combine
+import ServiceManagement
 
 final class AppSettings: ObservableObject {
 
@@ -80,9 +81,33 @@ final class AppSettings: ObservableObject {
         static let lineOpacity      = "lineOpacity"
         static let lineLength       = "lineLength"
         static let hasCustomLength  = "hasCustomLength"
-        static let shortcutKeyCode  = "shortcutKeyCode"
+        static let shortcutKeyCode   = "shortcutKeyCode"
         static let shortcutModifiers = "shortcutModifiers"
-        static let shortcutKeyChar  = "shortcutKeyChar"
+        static let shortcutKeyChar   = "shortcutKeyChar"
+        static let suppressWelcome = "suppressWelcome"
+    }
+
+    var showWelcomeOnLaunch: Bool {
+        get { !UserDefaults.standard.bool(forKey: Keys.suppressWelcome) }
+        set { UserDefaults.standard.set(!newValue, forKey: Keys.suppressWelcome) }
+    }
+
+    // MARK: - Launch at Login
+
+    @available(macOS 13.0, *)
+    var launchAtLogin: Bool {
+        get { SMAppService.mainApp.status == .enabled }
+        set {
+            do {
+                if newValue {
+                    try SMAppService.mainApp.register()
+                } else {
+                    try SMAppService.mainApp.unregister()
+                }
+            } catch {
+                print("SMAppService error: \(error)")
+            }
+        }
     }
 
     // MARK: - Color helpers

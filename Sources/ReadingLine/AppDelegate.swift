@@ -6,6 +6,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusBarController: StatusBarController?
     private var overlayWindowController: OverlayWindowController?
     private var mouseTracker: MouseTracker?
+    private var welcomeWindowController: WelcomeWindowController?
     private var cancellables = Set<AnyCancellable>()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -35,6 +36,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
             .store(in: &cancellables)
+
+        if AppSettings.shared.showWelcomeOnLaunch {
+            welcomeWindowController = WelcomeWindowController { [weak self] in
+                self?.welcomeWindowController?.close()
+                self?.welcomeWindowController = nil
+            }
+            welcomeWindowController?.show()
+        }
 
         setupHotKey()
 

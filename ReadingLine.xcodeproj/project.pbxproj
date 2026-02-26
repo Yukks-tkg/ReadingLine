@@ -12,6 +12,7 @@
 		21BB40E462DD494E763687AB /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E05550BB664FC9C676458B /* OverlayView.swift */; };
 		5BE6C0CEC916913CDC2EB6BE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49372FEA7ABD5008D94FCA67 /* main.swift */; };
 		5ECB919469A8BC740353C67A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40D11CDB9C7A108A974FD5BB /* Assets.xcassets */; };
+		6213184E61ACC0A232EE662B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D07C4FCA429EA8547BF098B /* WelcomeView.swift */; };
 		B51497E23588AAB11796FA93 /* ShortcutRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA77CDCA2471897CB6093EB /* ShortcutRecorderView.swift */; };
 		C10039BD2B7A15768823B9B2 /* HotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE53B3832A6DEFCDB435022 /* HotKeyManager.swift */; };
 		C7A6C449CB17BCAD112CA900 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FAD18E01DF3FD368C9EF2E /* AppSettings.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D07C4FCA429EA8547BF098B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		15FADB0CEB8936DD36200D75 /* MouseTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseTracker.swift; sourceTree = "<group>"; };
 		2EEC568A4DDF1C140C10E154 /* Doksen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doksen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40D11CDB9C7A108A974FD5BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 				88A420AF88BB78BEF30CEA96 /* SettingsView.swift */,
 				BBA77CDCA2471897CB6093EB /* ShortcutRecorderView.swift */,
 				4B143F3BCB4C26592CB720CB /* StatusBarController.swift */,
+				0D07C4FCA429EA8547BF098B /* WelcomeView.swift */,
 			);
 			name = ReadingLine;
 			path = Sources/ReadingLine;
@@ -157,6 +160,7 @@
 				EFCCDDF3BDB5F366D62AC631 /* SettingsView.swift in Sources */,
 				B51497E23588AAB11796FA93 /* ShortcutRecorderView.swift in Sources */,
 				191C50CB6BDC2EAB77E143DD /* StatusBarController.swift in Sources */,
+				6213184E61ACC0A232EE662B /* WelcomeView.swift in Sources */,
 				5BE6C0CEC916913CDC2EB6BE /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,7 +175,7 @@
 				CODE_SIGN_ENTITLEMENTS = Resources/ReadingLine.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
@@ -181,7 +185,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yuki.doksen;
 				PRODUCT_NAME = Doksen;
 				SDKROOT = macosx;
@@ -224,7 +228,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 2HNQAJKUD5;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -255,7 +258,7 @@
 				CODE_SIGN_ENTITLEMENTS = Resources/ReadingLine.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
@@ -265,7 +268,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yuki.doksen;
 				PRODUCT_NAME = Doksen;
 				SDKROOT = macosx;
@@ -308,7 +311,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 2HNQAJKUD5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;

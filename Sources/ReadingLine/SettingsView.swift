@@ -1,5 +1,6 @@
 import SwiftUI
 import AppKit
+import ServiceManagement
 
 struct SettingsView: View {
 
@@ -8,10 +9,16 @@ struct SettingsView: View {
     // Local state to avoid "Publishing changes from within view updates" warning
     @State private var selectedColor: Color
     @State private var isVerticalLocal: Bool
+    @State private var launchAtLogin: Bool
 
     init() {
         _selectedColor   = State(initialValue: Color(AppSettings.shared.lineColor))
         _isVerticalLocal = State(initialValue: AppSettings.shared.isVertical)
+        if #available(macOS 13.0, *) {
+            _launchAtLogin = State(initialValue: SMAppService.mainApp.status == .enabled)
+        } else {
+            _launchAtLogin = State(initialValue: false)
+        }
     }
 
     var body: some View {
@@ -68,6 +75,10 @@ struct SettingsView: View {
             lineLengthSection
 
             shortcutSection
+
+            Divider()
+
+            launchAtLoginSection
         }
         .padding(24)
         .frame(width: 420)
@@ -142,6 +153,27 @@ struct SettingsView: View {
                         .monospacedDigit()
                         .frame(width: 64, alignment: .trailing)
                 }
+            }
+        }
+    }
+
+    // MARK: - Launch at Login
+
+    private var launchAtLoginSection: some View {
+        HStack {
+            Label("ログイン時に起動", systemImage: "power")
+                .frame(width: 120, alignment: .leading)
+            if #available(macOS 13.0, *) {
+                Toggle("", isOn: $launchAtLogin)
+                    .toggleStyle(.switch)
+                    .labelsHidden()
+                    .onChange(of: launchAtLogin) { newValue in
+                        AppSettings.shared.launchAtLogin = newValue
+                    }
+            } else {
+                Text("macOS 13以降で利用可能")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
         }
     }
